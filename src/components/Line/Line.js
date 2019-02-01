@@ -9,8 +9,8 @@ const Line = ({ frames }) => {
   return (
     <div className={styles.line}>
       <div className={styles.bowler}>&nbsp;</div>
-      {frames.map(frame => (
-        <Frame frame={frame} />
+      {frames.map((frame, index) => (
+        <Frame frame={frame} key={index} />
       ))}
       <div className={styles.score}>&nbsp;</div>
     </div>
