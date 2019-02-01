@@ -1,41 +1,20 @@
 import React, { Component } from "react";
 
-import { Line, Frame } from "./components";
+import { Line } from "./components";
 
-import styles from "./App.module.css";
+import "./App.css";
+import ballScore from "./ballScore";
 
 class App extends Component {
   render() {
     const frames = new Array(10).fill([]);
-
     return (
-      <div className={styles.scorecard}>
-        <Line>
-          {frames.map(frame => (
-            <Frame frame={frame} />
-          ))}
-        </Line>
-        <Line>
-          {frames.map(frame => (
-            <Frame frame={frame} />
-          ))}
-        </Line>
-        <Line>
-          {frames.map(frame => (
-            <Frame frame={frame} />
-          ))}
-        </Line>
-        <Line>
-          {frames.map(frame => (
-            <Frame frame={frame} />
-          ))}
-        </Line>
-        <Line>
-          {frames.map(frame => (
-            <Frame frame={frame} />
-          ))}
-        </Line>
-      </div>
+      <Line.Container>
+        <Line frames={frames} />
+        <Line frames={frames} />
+        <Line frames={frames} />
+        <Line frames={frames} />
+      </Line.Container>
     );
   }
 }
