@@ -1,9 +1,8 @@
-import React, { Component, useReducer } from "react";
+import React, { useReducer } from "react";
 
 import { Line } from "./components";
 
 import "./App.css";
-import ballScore from "./ballScore";
 
 const Bowler = () => {
   return {
