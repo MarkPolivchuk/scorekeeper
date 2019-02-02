@@ -1,4 +1,18 @@
+# Scorekeeper
+
+Scorekeeper is an application a for scoring 5 pin bowling. Contributions and feedback are welcomed! 
+
+**This is a work in progress**
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Project goals
+
+- [ ] Printable blank or typed scoring templates
+- [ ] Develop data structures for scoring 5 pin bowling games and matches
+- [ ] Controls for keeping score
+
+As this project takes shape this list will grow, but I primarily want to focus on scoring a single game to start
 
 ## Available Scripts
 
