@@ -1,50 +1,26 @@
-import React, { useReducer } from "react";
+import React, { useState, useReducer } from "react";
 
-import { Line, PinDeck } from "./components";
+import { Line, PinDeck, TeamGame } from "./components";
+import { useSelected, useLines } from "./hooks";
 
-import "./App.css";
-
-const Bowler = () => {
-  return {
-    name: "",
-    frames: new Array(10).fill([])
-  };
-};
-
-const initialBowlers = new Array(5).fill(new Bowler());
-
-const reducer = (bowlers, action) => {
-  switch (action.type) {
-    case "add": {
-      return [...bowlers, new Bowler()];
-    }
-    case "remove": {
-      return [...bowlers.slice(0, -1)];
-    }
-    default: {
-      return bowlers;
-    }
-  }
-};
+const Button = ({ children, ...rest }) => (
+  <button
+    className="px-2 py-1 border border-blue text-blue-dark rounded-full ml-2"
+    {...rest}
+  >
+    {children}
+  </button>
+);
 
 const App = () => {
-  const [bowlers, dispatch] = useReducer(reducer, initialBowlers);
+  const [lines, { addLine, dropLine }] = useLines();
+  const [selected, { nextBall, prevBall }] = useSelected(lines);
   return (
     <div>
-      <div>
-        <button onClick={() => dispatch({ type: "add" })} type="button">
-          Add
-        </button>
-        <button onClick={() => dispatch({ type: "remove" })} type="button">
-          Remove
-        </button>
-      </div>
-      <Line.Container>
-        {bowlers.map((bowler, index) => (
-          <Line frames={bowler.frames} key={index} />
-        ))}
-      </Line.Container>
-      <PinDeck />
+      <TeamGame lines={lines} selected={selected} />
+      <Button onClick={dropLine}>Drop line</Button>
+      <Button onClick={addLine}>Add line</Button>
+      <PinDeck next={nextBall} previous={prevBall} />
     </div>
   );
 };

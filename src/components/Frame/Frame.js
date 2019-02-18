@@ -27,11 +27,12 @@ const Balls = ({ children }) => (
   </div>
 );
 
-const Ball = ({ className, score, isLast }) => (
+const Ball = ({ className, score, isLast, selected }) => (
   <div
     className={classNames(
       "flex-1 inline-flex justify-center items-center h-8 border-grey",
       { "border-r": !isLast },
+      { "bg-yellow-light": selected },
       className
     )}
   >
@@ -45,22 +46,38 @@ const Total = ({ total }) => (
   </div>
 );
 
-const Frame = ({ index, balls }) => {
+const Frame = ({ index, balls, selected }) => {
   return (
     <div className="inline-flex flex-1 h-full flex-wrap border-r border-grey-dark">
       <Balls>
-        <Ball score={score(0b11000)} />
-        <Ball score={score(0b00110)} />
-        <Ball score={score(0b00001)} isLast />
+        <Ball
+          // score={score(0b11000)}
+          selected={selected && selected.ball === 0}
+        />
+        <Ball
+          // score={score(0b00110)}
+          selected={selected && selected.ball === 1}
+        />
+        <Ball
+          // score={score(0b00001)}
+          selected={selected && selected.ball === 2}
+          isLast
+        />
       </Balls>
-      <Total total={15} />
+      <Total />
     </div>
   );
 };
 
 Frame.propTypes = {
   index: PropTypes.number,
-  balls: PropTypes.arrayOf(PropTypes.number)
+  balls: PropTypes.arrayOf(PropTypes.number),
+  // if this line and frame are selected, else undefined.
+  selected: PropTypes.shape({
+    ball: PropTypes.integer,
+    frame: PropTypes.integer,
+    line: PropTypes.integer
+  })
 };
 
 export default Frame;
