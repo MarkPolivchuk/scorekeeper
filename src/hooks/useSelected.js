@@ -47,6 +47,8 @@ const reducer = lines => (state, action) => {
           ball: ball - 1
         };
       }
+    case "set":
+      return action.data;
     default:
       return state;
   }
@@ -63,7 +65,8 @@ const useSelected = lines => {
     selected,
     {
       nextBall: () => dispatch({ type: "next" }),
-      prevBall: () => dispatch({ type: "previous" })
+      prevBall: () => dispatch({ type: "previous" }),
+      setSelected: data => dispatch({ type: "set", data: data })
     }
   ];
 };

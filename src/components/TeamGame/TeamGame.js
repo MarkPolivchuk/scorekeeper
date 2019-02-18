@@ -44,7 +44,7 @@ const Footer = () => (
   </div>
 );
 
-const TeamGame = ({ lines, selected }) => {
+const TeamGame = ({ lines, selected, select }) => {
   if (!(lines && lines.length)) {
     return null;
   }
@@ -55,6 +55,7 @@ const TeamGame = ({ lines, selected }) => {
         <Line
           key={index}
           frames={line}
+          select={(frame, ball) => select(index, frame, ball)}
           selected={selected.line === index ? selected : undefined}
         />
       ))}

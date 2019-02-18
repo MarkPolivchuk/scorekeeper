@@ -4,13 +4,15 @@ import classNames from "classnames";
 
 import { Frame } from "../../components";
 
-const Line = ({ frames, selected }) => {
+const Line = ({ frames, selected, select }) => {
   return (
-    <div className="w-full flex h-16 border-b border-grey-dark ">
+    <div
+      className={classNames("w-full flex h-16 border-b border-grey-dark", {
+        "bg-yellow-lightest": !!selected
+      })}
+    >
       <div
-        className={classNames("border-r border-l border-grey-dark", {
-          "bg-yellow-light": !!selected
-        })}
+        className={classNames("border-r border-l border-grey-dark")}
         style={{ flex: 2 }}
       />
       {frames.map((frame, index) => (
@@ -18,6 +20,7 @@ const Line = ({ frames, selected }) => {
           frame={frame}
           key={index}
           selected={selected && selected.frame === index ? selected : undefined}
+          select={ball => select(index, ball)}
         />
       ))}
       <div className="flex-1 border-r border-grey" />

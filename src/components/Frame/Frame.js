@@ -27,8 +27,9 @@ const Balls = ({ children }) => (
   </div>
 );
 
-const Ball = ({ className, score, isLast, selected }) => (
+const Ball = ({ className, score, isLast, selected, onClick }) => (
   <div
+    onClick={onClick}
     className={classNames(
       "flex-1 inline-flex justify-center items-center h-8 border-grey",
       { "border-r": !isLast },
@@ -46,19 +47,22 @@ const Total = ({ total }) => (
   </div>
 );
 
-const Frame = ({ index, balls, selected }) => {
+const Frame = ({ index, balls, select, selected }) => {
   return (
     <div className="inline-flex flex-1 h-full flex-wrap border-r border-grey-dark">
       <Balls>
         <Ball
+          onClick={() => select(0)}
           // score={score(0b11000)}
           selected={selected && selected.ball === 0}
         />
         <Ball
+          onClick={() => select(1)}
           // score={score(0b00110)}
           selected={selected && selected.ball === 1}
         />
         <Ball
+          onClick={() => select(2)}
           // score={score(0b00001)}
           selected={selected && selected.ball === 2}
           isLast
