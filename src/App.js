@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 
-import { Line } from "./components";
+import { Line, PinDeck } from "./components";
 
 import "./App.css";
 
@@ -44,6 +44,7 @@ const App = () => {
           <Line frames={bowler.frames} key={index} />
         ))}
       </Line.Container>
+      <PinDeck />
     </div>
   );
 };

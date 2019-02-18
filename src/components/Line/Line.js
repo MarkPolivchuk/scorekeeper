@@ -22,6 +22,18 @@ Line.propTypes = {
   frames: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
 };
 
+const HeaderCell = ({ children }) => (
+  <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
+    {children}
+  </div>
+);
+
+const FooterCell = ({ children }) => (
+  <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center">
+    {children}
+  </div>
+);
+
 Line.Container = ({ children }) => {
   if (!(children && children.length)) {
     return null;
@@ -33,36 +45,9 @@ Line.Container = ({ children }) => {
           className="text-left border-l border-transparent"
           style={{ flex: 2 }}
         />
-        <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
-          1
-        </div>
-        <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
-          3
-        </div>
-        <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
-          4
-        </div>
-        <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
-          5
-        </div>
-        <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
-          2
-        </div>
-        <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
-          6
-        </div>
-        <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
-          7
-        </div>
-        <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
-          8
-        </div>
-        <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
-          9
-        </div>
-        <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
-          10
-        </div>
+        {new Array(10).fill().map((_, index) => (
+          <HeaderCell key={index + 1}>{index}</HeaderCell>
+        ))}
         <div className="flex-1 border-l border-t border-r border-grey h-full inline-flex justify-center items-center">
           Total
         </div>
@@ -73,16 +58,9 @@ Line.Container = ({ children }) => {
           className="text-left border-l border-transparent"
           style={{ flex: 2 }}
         />
-        <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center" />
-        <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center" />
-        <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center" />
-        <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center" />
-        <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center" />
-        <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center" />
-        <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center" />
-        <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center" />
-        <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center" />
-        <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center" />
+        {new Array(10).fill().map((_, index) => (
+          <FooterCell key={index} />
+        ))}
         <div className="flex-1 border-l border-b border-r border-grey h-full inline-flex justify-center items-center">
           650
         </div>
