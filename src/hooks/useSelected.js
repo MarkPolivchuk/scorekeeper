@@ -47,8 +47,6 @@ const reducer = lines => (state, action) => {
           ball: ball - 1
         };
       }
-    case "set":
-      return state;
     default:
       return state;
   }

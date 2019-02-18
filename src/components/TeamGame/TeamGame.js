@@ -53,6 +53,7 @@ const TeamGame = ({ lines, selected }) => {
       <Header />
       {lines.map((line, index) => (
         <Line
+          key={index}
           frames={line}
           selected={selected.line === index ? selected : undefined}
         />
