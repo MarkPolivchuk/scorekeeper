@@ -41,8 +41,11 @@ const Ball = ({ className, score, isLast, selected, onClick }) => (
   </div>
 );
 
-const Total = ({ total }) => (
-  <div className="w-full inline-flex justify-center items-center h-8">
+const Total = ({ total, onClick }) => (
+  <div
+    className="w-full inline-flex justify-center items-center h-8"
+    onClick={onClick}
+  >
     {total}
   </div>
 );
@@ -68,7 +71,7 @@ const Frame = ({ index, balls, select, selected }) => {
           isLast
         />
       </Balls>
-      <Total />
+      <Total onClick={() => select(0)} />
     </div>
   );
 };
