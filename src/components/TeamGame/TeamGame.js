@@ -46,7 +46,7 @@ const TeamGame = ({ lines, selected, select }) => {
     return null
   }
   return (
-    <div className="inline-flex flex-col m-2 border border-grey-dark w-auto">
+    <div className="inline-flex flex-col m-2 mb-64 border border-grey-dark w-auto">
       <Header />
       {lines.map((line, index) => (
         <Line
