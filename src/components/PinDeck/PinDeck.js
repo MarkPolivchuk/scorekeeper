@@ -20,7 +20,7 @@ const PinDeck = ({ previous, next }) => {
     <div
       className={classNames(
         "bg-white",
-        "absolute pin-r pin-b",
+        "fixed pin-r pin-b",
         "py-4 px-2  mr-8 mb-8",
         "border border-grey-lighter shadow rounded-lg"
       )}

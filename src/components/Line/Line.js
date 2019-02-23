@@ -4,26 +4,35 @@ import classNames from "classnames";
 
 import { Frame } from "../../components";
 
+const BowlerCell = () => (
+  <div
+    className={classNames("inline-flex border-r border-grey-dark w-48 h-full")}
+  >
+    Mark Polivchuk
+  </div>
+);
+
+const TotalCell = () => <div className="w-24 border-r border-grey" />;
+
 const Line = ({ frames, selected, select }) => {
   return (
     <div
-      className={classNames("w-full flex h-16 border-b border-grey-dark", {
-        "bg-yellow-lightest": !!selected
-      })}
+      style={{ width: "800px" }}
+      className={classNames(
+        "flex flex-no-wrap h-16 border-b border-grey-dark",
+        { "bg-yellow-lightest": !!selected }
+      )}
     >
-      <div
-        className={classNames("border-r border-l border-grey-dark")}
-        style={{ flex: 2 }}
-      />
-      {frames.map((frame, index) => (
+      <BowlerCell />
+      {new Array(10).fill().map((_, index) => (
         <Frame
-          frame={frame}
+          frame={frames[index]}
           key={index}
           selected={selected && selected.frame === index ? selected : undefined}
           select={ball => select(index, ball)}
         />
       ))}
-      <div className="flex-1 border-r border-grey" />
+      <div className="w-24 border-r border-grey" />
     </div>
   );
 };

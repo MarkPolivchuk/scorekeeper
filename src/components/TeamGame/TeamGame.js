@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Line } from "..";
 
 const HeaderCell = ({ children }) => (
-  <div className="flex-1 border-l border-t border-grey h-full inline-flex justify-center items-center">
+  <div className="w-24 border-l border-t border-grey h-full inline-flex justify-center items-center">
     {children}
   </div>
 );
@@ -24,17 +24,16 @@ const Header = () => (
 );
 
 const FooterCell = ({ children }) => (
-  <div className="flex-1 border-l border-b border-grey h-full inline-flex justify-center items-center">
+  <div className="w-24 border-l border-b border-grey h-full inline-flex justify-center items-center">
     {children}
   </div>
 );
 
 const Footer = () => (
-  <div className="flex text-center h-8">
-    <div
-      className="text-left border-l border-transparent"
-      style={{ flex: 2 }}
-    />
+  <div className="text-center h-8">
+    <div className="inline-block text-left border-l border-transparent">
+      Total
+    </div>
     {new Array(10).fill().map((_, index) => (
       <FooterCell key={index} />
     ))}
@@ -49,8 +48,8 @@ const TeamGame = ({ lines, selected, select }) => {
     return null;
   }
   return (
-    <div className="flex flex-col m-2">
-      <Header />
+    <div className="inline-flex flex-col m-2 border border-grey-dark w-auto">
+      {/* <Header /> */}
       {lines.map((line, index) => (
         <Line
           key={index}
@@ -59,7 +58,7 @@ const TeamGame = ({ lines, selected, select }) => {
           selected={selected.line === index ? selected : undefined}
         />
       ))}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
