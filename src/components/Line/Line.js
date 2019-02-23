@@ -12,7 +12,7 @@ const BowlerCell = () => (
   </div>
 );
 
-const TotalCell = () => <div className="w-24 border-r border-grey" />;
+const TotalCell = () => <div className="flex-1 border-grey" />;
 
 const Line = ({ frames, selected, select }) => {
   return (
@@ -32,7 +32,7 @@ const Line = ({ frames, selected, select }) => {
           select={ball => select(index, ball)}
         />
       ))}
-      <div className="w-24 border-r border-grey" />
+      <TotalCell />
     </div>
   );
 };

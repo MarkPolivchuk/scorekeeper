@@ -52,7 +52,7 @@ const Total = ({ total, onClick }) => (
 
 const Frame = ({ index, balls, select, selected }) => {
   return (
-    <div className="inline-flex w-24 h-full flex-wrap border-r border-grey-dark">
+    <div className="inline-flex flex-1 h-full flex-wrap border-r border-grey-dark">
       <Balls>
         <Ball
           onClick={() => select(0)}
