@@ -6,7 +6,7 @@ import { Frame } from "../../components";
 
 const BowlerCell = () => (
   <div
-    className={classNames("inline-flex border-r border-grey-dark w-48 h-full")}
+    className={classNames("inline-flex border-r border-grey-dark w-48 h-full p-2")}
   >
     Mark Polivchuk
   </div>
@@ -17,7 +17,7 @@ const TotalCell = () => <div className="flex-1 border-grey" />;
 const Line = ({ frames, selected, select }) => {
   return (
     <div
-      style={{ width: "800px" }}
+      style={{ width: "1000px" }}
       className={classNames(
         "flex flex-no-wrap h-16 border-b border-grey-dark",
         { "bg-yellow-lightest": !!selected }
@@ -42,9 +42,9 @@ Line.propTypes = {
   frames: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
   // if selected.line === this line's index
   selected: PropTypes.shape({
-    ball: PropTypes.integer,
-    frame: PropTypes.integer,
-    line: PropTypes.integer
+    ball: PropTypes.number,
+    frame: PropTypes.number,
+    line: PropTypes.number
   })
 };
 

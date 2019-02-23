@@ -81,9 +81,9 @@ Frame.propTypes = {
   balls: PropTypes.arrayOf(PropTypes.number),
   // if this line and frame are selected, else undefined.
   selected: PropTypes.shape({
-    ball: PropTypes.integer,
-    frame: PropTypes.integer,
-    line: PropTypes.integer
+    ball: PropTypes.number,
+    frame: PropTypes.number,
+    line: PropTypes.number
   })
 };
 

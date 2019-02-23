@@ -1,55 +1,53 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
-import { Line } from "..";
+import { Line } from '..'
 
-const HeaderCell = ({ children }) => (
-  <div className="w-24 border-l border-t border-grey h-full inline-flex justify-center items-center">
+const Cell = ({ children, isLast }) => (
+  <div
+    className={classNames(
+      'flex-1 h-full inline-flex justify-center items-center',
+      { 'border-r border-grey-dark': !isLast }
+    )}
+  >
     {children}
   </div>
-);
+)
+
+const WideCell = ({ children }) => (
+  <div className="w-48 border-r border-grey-dark h-full inline-flex justify-start items-center p-2">
+    {children}
+  </div>
+)
+
 const Header = () => (
   <div className="flex border-b border-grey-dark text-center items-center h-8">
-    <div
-      className="text-left border-l border-transparent"
-      style={{ flex: 2 }}
-    />
+    <WideCell>Bowlers</WideCell>
     {new Array(10).fill().map((_, index) => (
-      <HeaderCell key={index}>{index + 1}</HeaderCell>
+      <Cell key={index}>{index + 1}</Cell>
     ))}
-    <div className="flex-1 border-l border-t border-r border-grey h-full inline-flex justify-center items-center">
-      Total
-    </div>
+    <Cell isLast>Total</Cell>
   </div>
-);
-
-const FooterCell = ({ children }) => (
-  <div className="w-24 border-l border-b border-grey h-full inline-flex justify-center items-center">
-    {children}
-  </div>
-);
+)
 
 const Footer = () => (
-  <div className="text-center h-8">
-    <div className="inline-block text-left border-l border-transparent">
-      Total
-    </div>
+  <div className="text-center flex h-8">
+    <WideCell>Total</WideCell>
     {new Array(10).fill().map((_, index) => (
-      <FooterCell key={index} />
+      <Cell key={index} />
     ))}
-    <div className="flex-1 border-l border-b border-r border-grey h-full inline-flex justify-center items-center">
-      &nbsp;
-    </div>
+    <Cell isLast>&nbsp;</Cell>
   </div>
-);
+)
 
 const TeamGame = ({ lines, selected, select }) => {
   if (!(lines && lines.length)) {
-    return null;
+    return null
   }
   return (
     <div className="inline-flex flex-col m-2 border border-grey-dark w-auto">
-      {/* <Header /> */}
+      <Header />
       {lines.map((line, index) => (
         <Line
           key={index}
@@ -58,13 +56,13 @@ const TeamGame = ({ lines, selected, select }) => {
           selected={selected.line === index ? selected : undefined}
         />
       ))}
-      {/* <Footer /> */}
+      <Footer />
     </div>
-  );
-};
+  )
+}
 
 TeamGame.propTypes = {
-  children: PropTypes.node // Line
-};
+  children: PropTypes.node, // Line
+}
 
-export default TeamGame;
+export default TeamGame

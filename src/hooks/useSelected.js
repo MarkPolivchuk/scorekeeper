@@ -1,9 +1,9 @@
 import { useReducer } from "react";
 
 const initialState = {
-  frame: 9,
+  line: 0,
+  frame: 0,
   ball: 0,
-  line: 2
 };
 
 const reducer = lines => (state, action) => {
