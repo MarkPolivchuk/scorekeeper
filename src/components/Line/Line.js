@@ -1,26 +1,28 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
-import { Frame } from "../../components";
+import { Frame } from '../../components'
 
 const BowlerCell = () => (
   <div
-    className={classNames("inline-flex border-r border-grey-dark w-48 h-full p-2")}
+    className={classNames(
+      'inline-flex border-r border-grey-dark w-48 h-full p-2'
+    )}
   >
     Mark Polivchuk
   </div>
-);
+)
 
-const TotalCell = () => <div className="flex-1 border-grey" />;
+const TotalCell = () => <div className="flex-1 border-grey" />
 
 const Line = ({ frames, selected, select }) => {
   return (
     <div
-      style={{ width: "1000px" }}
+      style={{ width: '1000px' }}
       className={classNames(
-        "flex flex-no-wrap h-16 border-b border-grey-dark",
-        { "bg-yellow-lightest": !!selected }
+        'flex flex-no-wrap h-16 border-b border-grey-dark',
+        { 'bg-yellow-lightest': !!selected }
       )}
     >
       <BowlerCell />
@@ -34,8 +36,8 @@ const Line = ({ frames, selected, select }) => {
       ))}
       <TotalCell />
     </div>
-  );
-};
+  )
+}
 
 Line.propTypes = {
   children: PropTypes.node,
@@ -44,8 +46,8 @@ Line.propTypes = {
   selected: PropTypes.shape({
     ball: PropTypes.number,
     frame: PropTypes.number,
-    line: PropTypes.number
-  })
-};
+    line: PropTypes.number,
+  }),
+}
 
-export default Line;
+export default Line
