@@ -1,7 +1,7 @@
 import { useReducer } from 'react'
 
 const Line = () => {
-  return new Array(10).fill([])
+  return new Array(10)
 }
 
 const testLine = [

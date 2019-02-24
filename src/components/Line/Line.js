@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import { Frame } from '../../components'
+import { ballScore, frameTotal, ballDisplay } from '../../utils'
+
+const { isStrike, isSpare } = ballDisplay
 
 const BowlerCell = () => (
   <div
@@ -26,14 +29,23 @@ const Line = ({ frames, selected, select }) => {
       )}
     >
       <BowlerCell />
-      {new Array(10).fill().map((_, index) => (
-        <Frame
-          frame={frames[index]}
-          key={index}
-          selected={selected && selected.frame === index ? selected : undefined}
-          select={ball => select(index, ball)}
-        />
-      ))}
+      {new Array(10).fill().map((_, index) => {
+        const [b0, b1, b2] = frames[index] || []
+        const total = frameTotal(frames, index)
+        return (
+          <Frame
+            key={index}
+            b0={isStrike(b0) ? 'X' : ballScore(b0)}
+            b1={isSpare(b0, b1) ? '/' : ballScore(b1)}
+            b2={ballScore(b2)}
+            total={total}
+            selected={
+              selected && selected.frame === index ? selected : undefined
+            }
+            select={ball => select(index, ball)}
+          />
+        )
+      })}
       <TotalCell />
     </div>
   )
