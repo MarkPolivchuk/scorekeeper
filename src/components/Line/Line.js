@@ -5,27 +5,19 @@ import classNames from 'classnames'
 import { Frame } from 'Components'
 import { useFramesTransform } from 'Hooks'
 
-const BowlerCell = () => (
-  <div
-    className={classNames(
-      'inline-flex border-r border-grey-dark w-48 h-full p-2'
-    )}
-  >
-    Mark Polivchuk
-  </div>
-)
+import styles from './Line.module.css'
 
-const TotalCell = () => <div className="flex-1 border-grey" />
+const BowlerCell = () => <div className={styles.bowler}>Mark Polivchuk</div>
+
+const TotalCell = () => <div className={styles.total} />
 
 const Line = ({ frames, selected = false, select }) => {
   const parsedFrames = useFramesTransform(frames)
   return (
     <div
-      style={{ width: '1000px' }}
-      className={classNames(
-        'flex flex-no-wrap h-16 border-b border-grey-dark',
-        { 'bg-yellow-lightest': !!selected }
-      )}
+      className={classNames(styles.line, {
+        [styles.selected]: !!selected,
+      })}
     >
       <BowlerCell />
       {parsedFrames.map(({ b0, b1, b2, total }, index) => (

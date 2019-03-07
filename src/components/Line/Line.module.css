@@ -1,2 +1,16 @@
 .line {
+  width: 1000px;
+  @apply flex flex-no-wrap h-16 border-b border-grey-dark;
+}
+
+.selected {
+  @apply bg-yellow-lightest;
+}
+
+.bowler {
+  @apply inline-flex border-r border-grey-dark w-48 h-full p-2;
+}
+
+.total {
+  @apply flex-1 border-grey;
 }
