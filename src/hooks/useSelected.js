@@ -1,58 +1,58 @@
-import { useReducer } from "react";
+import { useReducer } from 'react'
 
 const initialState = {
   line: 0,
   frame: 0,
   ball: 0,
-};
+}
 
 const reducer = lines => (state, action) => {
-  const { frame, ball, line } = state;
+  const { frame, ball, line } = state
   switch (action.type) {
-    case "next":
+    case 'next':
       // last ball of game
       if (line === lines.length - 1 && frame === 9 && ball === 2) {
-        return state;
+        return state
       }
       // last ball of frame
       if (ball === 2) {
         return {
           ball: 0,
           frame: line === lines.length - 1 ? frame + 1 : frame,
-          line: (line + 1) % lines.length
-        };
+          line: (line + 1) % lines.length,
+        }
       } else {
         return {
           line,
           frame,
-          ball: ball + 1
-        };
+          ball: ball + 1,
+        }
       }
-    case "previous":
+    case 'previous':
       // first ball of game
       if (line === 0 && frame === 0 && ball === 0) {
-        return state;
+        return state
       }
       // first
       if (ball === 0) {
         return {
           ball: 2,
           frame: line === 0 ? frame - 1 : frame,
-          line: (line + (lines.length - 1)) % lines.length
-        };
+          line: (line + (lines.length - 1)) % lines.length,
+        }
       } else {
         return {
           line,
           frame,
-          ball: ball - 1
-        };
+          ball: ball - 1,
+        }
       }
-    case "set":
-      return action.data;
+    case 'set':
+      return action.data
     default:
-      return state;
+      return state
   }
-};
+}
 
 /**
  * This manages the state of the scorekeeper,
@@ -60,15 +60,15 @@ const reducer = lines => (state, action) => {
  * who's turn is active, etc
  */
 const useSelected = lines => {
-  const [selected, dispatch] = useReducer(reducer(lines), initialState);
+  const [selected, dispatch] = useReducer(reducer(lines), initialState)
   return [
     selected,
     {
-      nextBall: () => dispatch({ type: "next" }),
-      prevBall: () => dispatch({ type: "previous" }),
-      setSelected: data => dispatch({ type: "set", data: data })
-    }
-  ];
-};
+      nextBall: () => dispatch({ type: 'next' }),
+      prevBall: () => dispatch({ type: 'previous' }),
+      setSelected: data => dispatch({ type: 'set', data: data }),
+    },
+  ]
+}
 
-export default useSelected;
+export default useSelected

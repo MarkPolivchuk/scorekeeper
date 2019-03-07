@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import PinDeck from "./PinDeck";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import PinDeck from './PinDeck'
 
-it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<PinDeck />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(<PinDeck />, div)
+  ReactDOM.unmountComponentAtNode(div)
+})

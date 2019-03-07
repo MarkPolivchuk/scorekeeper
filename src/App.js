@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
-import { PinDeck, TeamGame } from "./components";
-import { useSelected, useLines } from "./hooks";
+import { PinDeck, TeamGame } from './components'
+import { useSelected, useLines } from './hooks'
 
 const Button = ({ children, ...rest }) => (
   <button
@@ -10,11 +10,11 @@ const Button = ({ children, ...rest }) => (
   >
     {children}
   </button>
-);
+)
 
 const App = () => {
-  const [lines, { addLine, dropLine }] = useLines();
-  const [selected, { nextBall, prevBall, setSelected }] = useSelected(lines);
+  const [lines, { addLine, dropLine }] = useLines()
+  const [selected, { nextBall, prevBall, setSelected }] = useSelected(lines)
   return (
     <div>
       <div className="m-2">
@@ -25,12 +25,12 @@ const App = () => {
         lines={lines}
         selected={selected}
         select={(line, frame, ball) => {
-          setSelected({ line, frame, ball });
+          setSelected({ line, frame, ball })
         }}
       />
       <PinDeck next={nextBall} previous={prevBall} />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
