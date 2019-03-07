@@ -1,4 +1,4 @@
-import { pins } from '../data'
+import { pins } from 'Data'
 
 /**
  * Each ball thrown can be represented by a 6-bit binary number with

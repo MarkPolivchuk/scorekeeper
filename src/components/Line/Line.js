@@ -2,10 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import { Frame } from '../../components'
-import { ballScore, frameTotal, ballDisplay } from '../../utils'
-
-const { isStrike, isSpare } = ballDisplay
+import { Frame } from 'Components'
+import { useFramesTransform } from 'Hooks'
 
 const BowlerCell = () => (
   <div
@@ -19,7 +17,8 @@ const BowlerCell = () => (
 
 const TotalCell = () => <div className="flex-1 border-grey" />
 
-const Line = ({ frames, selected, select }) => {
+const Line = ({ frames, selected = false, select }) => {
+  const parsedFrames = useFramesTransform(frames)
   return (
     <div
       style={{ width: '1000px' }}
@@ -29,23 +28,17 @@ const Line = ({ frames, selected, select }) => {
       )}
     >
       <BowlerCell />
-      {new Array(10).fill().map((_, index) => {
-        const [b0, b1, b2] = frames[index] || []
-        const total = frameTotal(frames, index)
-        return (
-          <Frame
-            key={index}
-            b0={isStrike(b0) ? 'X' : ballScore(b0)}
-            b1={isSpare(b0, b1) ? '/' : ballScore(b1)}
-            b2={ballScore(b2)}
-            total={total}
-            selected={
-              selected && selected.frame === index ? selected : undefined
-            }
-            select={ball => select(index, ball)}
-          />
-        )
-      })}
+      {parsedFrames.map(({ b0, b1, b2, total }, index) => (
+        <Frame
+          key={index}
+          b0={b0}
+          b1={b1}
+          b2={b2}
+          total={total}
+          selected={selected && selected.frame === index ? selected : undefined}
+          select={ball => select(index, ball)}
+        />
+      ))}
       <TotalCell />
     </div>
   )
@@ -54,7 +47,7 @@ const Line = ({ frames, selected, select }) => {
 Line.propTypes = {
   children: PropTypes.node,
   frames: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
-  // if selected.line === this line's index
+  // if selected.line === this line's index, else false
   selected: PropTypes.shape({
     ball: PropTypes.number,
     frame: PropTypes.number,

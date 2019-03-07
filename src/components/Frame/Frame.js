@@ -25,24 +25,24 @@ const Total = ({ total, onClick }) => (
   </div>
 )
 
-const Frame = ({ b0, b1, b2, total, select, selected }) => {
+const Frame = ({ b0, b1, b2, total, select, selected = false }) => {
   return (
     <div className="inline-flex flex-1 h-full flex-wrap border-r border-grey-dark">
       <div className="inline-flex w-full h-1/2 border-b border-grey">
         <Ball
-          value={b0}
+          value={b0.value}
           onClick={() => select(0)}
-          selected={selected && selected.ball === 0}
+          selected={selected.ball === 0}
         />
         <Ball
-          value={b1}
+          value={b1.value}
           onClick={() => select(1)}
-          selected={selected && selected.ball === 1}
+          selected={selected.ball === 1}
         />
         <Ball
-          value={b2}
+          value={b2.value}
           onClick={() => select(2)}
-          selected={selected && selected.ball === 2}
+          selected={selected.ball === 2}
           isLast
         />
       </div>
@@ -54,7 +54,7 @@ const Frame = ({ b0, b1, b2, total, select, selected }) => {
 Frame.propTypes = {
   index: PropTypes.number,
   balls: PropTypes.arrayOf(PropTypes.number),
-  // if this line and frame are selected, else undefined.
+  // if this line and frame are selected, else false
   selected: PropTypes.shape({
     ball: PropTypes.number,
     frame: PropTypes.number,
