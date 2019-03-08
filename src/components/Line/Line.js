@@ -14,19 +14,12 @@ const TotalCell = () => <div className={styles.total} />
 const Line = ({ frames, selected = false, select }) => {
   const parsedFrames = useFramesTransform(frames)
   return (
-    <div
-      className={classNames(styles.line, {
-        [styles.selected]: !!selected,
-      })}
-    >
+    <div className={classNames(styles.line, { [styles.selected]: !!selected })}>
       <BowlerCell />
-      {parsedFrames.map(({ b0, b1, b2, total }, index) => (
+      {parsedFrames.map((frame, index) => (
         <Frame
           key={index}
-          b0={b0}
-          b1={b1}
-          b2={b2}
-          total={total}
+          frame={frame}
           selected={selected && selected.frame === index ? selected : undefined}
           select={ball => select(index, ball)}
         />

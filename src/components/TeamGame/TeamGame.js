@@ -1,43 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 
-import { Line } from '..'
+import { Line } from 'Components'
 
-const Cell = ({ children, isLast }) => (
-  <div
-    className={classNames(
-      'flex-1 h-full inline-flex justify-center items-center',
-      { 'border-r border-grey-dark': !isLast }
-    )}
-  >
-    {children}
-  </div>
-)
-
-const WideCell = ({ children }) => (
-  <div className="w-48 border-r border-grey-dark h-full inline-flex justify-start items-center p-2">
-    {children}
-  </div>
-)
+import styles from './TeamGame.module.css'
 
 const Header = () => (
-  <div className="flex border-b border-grey-dark text-center items-center h-8">
-    <WideCell>Bowlers</WideCell>
+  <div className={styles.header}>
+    <div className={styles.wideCell}>Bowlers</div>
     {new Array(10).fill().map((_, index) => (
-      <Cell key={index}>{index + 1}</Cell>
+      <div className={styles.cell} key={index}>
+        {index + 1}
+      </div>
     ))}
-    <Cell isLast>Total</Cell>
+    <div className={styles.cell}>Total</div>
   </div>
 )
 
 const Footer = () => (
-  <div className="text-center flex h-8">
-    <WideCell>Total</WideCell>
+  <div className={styles.footer}>
+    <div className={styles.wideCell}>Total</div>
     {new Array(10).fill().map((_, index) => (
-      <Cell key={index} />
+      <div className={styles.cell} key={index} />
     ))}
-    <Cell isLast>&nbsp;</Cell>
+    <div className={styles.cell}>&nbsp;</div>
   </div>
 )
 
@@ -46,7 +32,7 @@ const TeamGame = ({ lines, selected, select }) => {
     return null
   }
   return (
-    <div className="inline-flex flex-col m-2 mb-64 border border-grey-dark w-auto">
+    <div className={styles.teamGame}>
       <Header />
       {lines.map((line, index) => (
         <Line

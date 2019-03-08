@@ -2,13 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-const Ball = ({ className, value, isLast, selected, onClick }) => (
+import styles from './Frame.module.css'
+
+const Ball = ({ className, value, selected, onClick }) => (
   <div
     onClick={onClick}
     className={classNames(
-      'flex-1 inline-flex justify-center items-center h-8 border-grey',
-      { 'border-r': !isLast },
-      { 'bg-yellow-light': selected },
+      styles.ball,
+      { [styles.selected]: selected },
       className
     )}
   >
@@ -17,18 +18,16 @@ const Ball = ({ className, value, isLast, selected, onClick }) => (
 )
 
 const Total = ({ total, onClick }) => (
-  <div
-    className="w-full inline-flex justify-center items-center h-8"
-    onClick={onClick}
-  >
+  <div className={styles.total} onClick={onClick}>
     {total}
   </div>
 )
 
-const Frame = ({ b0, b1, b2, total, select, selected = false }) => {
+const Frame = ({ frame, select, selected = false }) => {
+  const { b0, b1, b2, total } = frame
   return (
-    <div className="inline-flex flex-1 h-full flex-wrap border-r border-grey-dark">
-      <div className="inline-flex w-full h-1/2 border-b border-grey">
+    <div className={styles.frame}>
+      <div className={styles.balls}>
         <Ball
           value={b0.value}
           onClick={() => select(0)}
@@ -43,7 +42,6 @@ const Frame = ({ b0, b1, b2, total, select, selected = false }) => {
           value={b2.value}
           onClick={() => select(2)}
           selected={selected.ball === 2}
-          isLast
         />
       </div>
       <Total onClick={() => select(0)} total={total} />

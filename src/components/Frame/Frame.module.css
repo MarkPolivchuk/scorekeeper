@@ -1,0 +1,23 @@
+.ball {
+  @apply flex-1 inline-flex justify-center items-center h-8 border-grey;
+}
+
+.ball:not(:last-of-type) {
+  @apply border-r;
+}
+
+.selected {
+  @apply bg-yellow-light;
+}
+
+.total {
+  @apply w-full inline-flex justify-center border-t border-grey items-center h-8;
+}
+
+.frame {
+  @apply inline-flex flex-1 h-full flex-wrap border-r border-grey-dark;
+}
+
+.balls {
+  @apply inline-flex w-full h-8;
+}

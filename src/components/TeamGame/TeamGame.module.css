@@ -1,0 +1,23 @@
+.teamGame {
+  @apply inline-flex flex-col m-2 mb-64 border border-grey-dark w-auto;
+}
+
+.header {
+  @apply flex border-b border-grey-dark text-center items-center h-8;
+}
+
+.footer {
+  @apply text-center flex h-8;
+}
+
+.cell {
+  @apply flex-1 h-full inline-flex justify-center items-center;
+}
+
+.cell:not(:last-of-type) {
+  @apply border-r border-grey-dark;
+}
+
+.wideCell {
+  @apply w-48 border-r border-grey-dark h-full inline-flex justify-start items-center p-2;
+}
