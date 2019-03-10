@@ -24,7 +24,7 @@ const Total = ({ total, onClick }) => (
 )
 
 const Frame = ({ frame, select, selected = false }) => {
-  const { b0, b1, b2, total } = frame
+  const { b0, b1, b2, frameTotal } = frame
   return (
     <div className={styles.frame}>
       <div className={styles.balls}>
@@ -44,7 +44,7 @@ const Frame = ({ frame, select, selected = false }) => {
           selected={selected.ball === 2}
         />
       </div>
-      <Total onClick={() => select(0)} total={total} />
+      <Total onClick={() => select(0)} total={frameTotal} />
     </div>
   )
 }
