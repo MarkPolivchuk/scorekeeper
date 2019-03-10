@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Line } from 'Components'
+import { Line } from 'src/components'
 
 import styles from './TeamGame.module.css'
 

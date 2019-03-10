@@ -1,4 +1,4 @@
-import { specials } from 'Data'
+import { specials } from 'src/data'
 
 const { CLEAN_DECK, HEADPIN } = specials
 

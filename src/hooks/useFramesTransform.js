@@ -1,4 +1,4 @@
-import { ballDisplay, ballScore } from 'Utils'
+import { ballDisplay, ballScore } from 'src/utils'
 const { isStrike, isSpare } = ballDisplay
 
 const frameScore = (frames, index) => {

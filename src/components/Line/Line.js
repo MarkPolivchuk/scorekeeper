@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import { Frame } from 'Components'
-import { useFramesTransform } from 'Hooks'
+import { Frame } from 'src/components'
+import { useFramesTransform } from 'src/hooks'
 
 import styles from './Line.module.css'
 
