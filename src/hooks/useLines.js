@@ -37,13 +37,11 @@ const reducer = (state, action) => {
  */
 const useLines = () => {
   const [lines, dispatch] = useReducer(reducer, initialState)
-  return [
+  return {
     lines,
-    {
-      addLine: () => dispatch({ type: 'add' }),
-      dropLine: () => dispatch({ type: 'drop' }),
-    },
-  ]
+    addLine: () => dispatch({ type: 'add' }),
+    dropLine: () => dispatch({ type: 'drop' }),
+  }
 }
 
 export default useLines

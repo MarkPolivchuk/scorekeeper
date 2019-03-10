@@ -13,7 +13,7 @@ const Button = ({ children, ...rest }) => (
 )
 
 const App = () => {
-  const [lines, { addLine, dropLine }] = useLines()
+  const { lines, addLine, dropLine } = useLines()
   const [selected, { nextBall, prevBall, setSelected }] = useSelected(lines)
   return (
     <div>
