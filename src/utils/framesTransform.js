@@ -63,7 +63,7 @@ const ball2Result = frame => {
   }
 }
 
-const useFramesTransform = frames => {
+const framesTransform = frames => {
   return new Array(10).fill().map((_, index) => {
     const frame = frames[index] || []
     return {
@@ -75,4 +75,4 @@ const useFramesTransform = frames => {
   })
 }
 
-export default useFramesTransform
+export default framesTransform

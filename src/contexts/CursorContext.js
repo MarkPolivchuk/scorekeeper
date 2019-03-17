@@ -1,10 +1,12 @@
-import { useReducer } from 'react'
+import React, { useReducer, useCallback } from 'react'
 
 const initialState = {
   line: 0,
   frame: 0,
   ball: 0,
 }
+
+const CursorContext = React.createContext(initialState)
 
 const reducer = lines => (state, action) => {
   const { frame, ball, line } = state
@@ -54,21 +56,29 @@ const reducer = lines => (state, action) => {
   }
 }
 
-/**
- * This manages the state of the scorekeeper,
- * such as deciding which ball is being edited,
- * who's turn is active, etc
- */
-const useSelected = lines => {
-  const [selected, dispatch] = useReducer(reducer(lines), initialState)
-  return [
-    selected,
-    {
-      nextBall: () => dispatch({ type: 'next' }),
-      prevBall: () => dispatch({ type: 'previous' }),
-      setSelected: data => dispatch({ type: 'set', data: data }),
-    },
-  ]
+CursorContext.Manager = ({ lines, children }) => {
+  const [cursor, dispatch] = useReducer(reducer(lines), initialState)
+  const set = useCallback(data => {
+    dispatch({ type: 'set', data })
+  })
+  const next = useCallback(() => {
+    dispatch({ type: 'next' })
+  })
+  const previous = useCallback(() => {
+    dispatch({ type: 'previous' })
+  })
+  return (
+    <CursorContext.Provider
+      value={{
+        ...cursor,
+        set,
+        next,
+        previous,
+      }}
+    >
+      {children}
+    </CursorContext.Provider>
+  )
 }
 
-export default useSelected
+export default CursorContext

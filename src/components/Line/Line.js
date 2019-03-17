@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import { Frame } from 'src/components'
-import { useFramesTransform } from 'src/hooks'
+import { CursorContext } from 'src/contexts'
 
 import styles from './Line.module.css'
 
@@ -11,17 +11,21 @@ const BowlerCell = () => <div className={styles.bowler}>Mark Polivchuk</div>
 
 const TotalCell = () => <div className={styles.total} />
 
-const Line = ({ frames, selected = false, select }) => {
-  const parsedFrames = useFramesTransform(frames)
+const Line = ({ frames, lineIndex }) => {
+  const cursor = useContext(CursorContext)
   return (
-    <div className={classNames(styles.line, { [styles.selected]: !!selected })}>
+    <div
+      className={classNames(styles.line, {
+        [styles.selected]: cursor.line === lineIndex,
+      })}
+    >
       <BowlerCell />
-      {parsedFrames.map((frame, index) => (
+      {frames.map((frame, frameIndex) => (
         <Frame
-          key={index}
+          key={frameIndex}
+          lineIndex={lineIndex}
+          frameIndex={frameIndex}
           frame={frame}
-          selected={selected && selected.frame === index ? selected : undefined}
-          select={ball => select(index, ball)}
         />
       ))}
       <TotalCell />
@@ -30,14 +34,8 @@ const Line = ({ frames, selected = false, select }) => {
 }
 
 Line.propTypes = {
-  children: PropTypes.node,
   frames: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
-  // if selected.line === this line's index, else false
-  selected: PropTypes.shape({
-    ball: PropTypes.number,
-    frame: PropTypes.number,
-    line: PropTypes.number,
-  }),
+  index: PropTypes.number,
 }
 
 export default Line

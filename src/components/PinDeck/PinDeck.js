@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
 import classNames from 'classnames'
+import { CursorContext } from 'src/contexts'
 
 const Pin = ({ value }) => (
   <button className="text-blue-dark font-bold hover:bg-blue hover:text-blue-lighter border-blue border-2 rounded-full h-12 w-12 mx-2">
@@ -15,7 +16,8 @@ const Button = ({ children, ...rest }) => (
   </button>
 )
 
-const PinDeck = ({ previous, next }) => {
+const PinDeck = () => {
+  const cursor = useContext(CursorContext)
   return (
     <div
       className={classNames(
@@ -33,8 +35,8 @@ const PinDeck = ({ previous, next }) => {
         <Pin value={2} />
       </div>
       <div className="w-full flex">
-        <Button onClick={previous}>Prev</Button>
-        <Button onClick={next}>Next</Button>
+        <Button onClick={cursor.previous}>Prev</Button>
+        <Button onClick={cursor.next}>Next</Button>
       </div>
     </div>
   )

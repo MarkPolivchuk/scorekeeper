@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { PinDeck, TeamGame } from './components'
-import { useSelected, useLines } from './hooks'
+import { PinDeck, TeamGame } from 'src/components'
+import { useLines } from 'src/hooks'
+import { CursorContext } from 'src/contexts'
 
 const Button = ({ children, ...rest }) => (
   <button
@@ -14,22 +15,15 @@ const Button = ({ children, ...rest }) => (
 
 const App = () => {
   const { lines, addLine, dropLine } = useLines()
-  const [selected, { nextBall, prevBall, setSelected }] = useSelected(lines)
   return (
-    <div>
+    <CursorContext.Manager lines={lines}>
       <div className="m-2">
         <Button onClick={dropLine}>Drop line</Button>
         <Button onClick={addLine}>Add line</Button>
       </div>
-      <TeamGame
-        lines={lines}
-        selected={selected}
-        select={(line, frame, ball) => {
-          setSelected({ line, frame, ball })
-        }}
-      />
-      <PinDeck next={nextBall} previous={prevBall} />
-    </div>
+      <TeamGame lines={lines} />
+      <PinDeck />
+    </CursorContext.Manager>
   )
 }
 

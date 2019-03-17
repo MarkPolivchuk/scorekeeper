@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Line } from 'src/components'
+import { framesTransform } from 'src/utils'
 
 import styles from './TeamGame.module.css'
 
@@ -17,32 +18,32 @@ const Header = () => (
   </div>
 )
 
-const Footer = () => (
+const Footer = ({ lines }) => (
   <div className={styles.footer}>
     <div className={styles.wideCell}>Total</div>
     {new Array(10).fill().map((_, index) => (
-      <div className={styles.cell} key={index} />
+      <div className={styles.cell} key={index}>
+        {lines.reduce((acc, line) => {
+          return acc + line[index].frameTotal
+        }, 0)}
+      </div>
     ))}
     <div className={styles.cell}>&nbsp;</div>
   </div>
 )
 
-const TeamGame = ({ lines, selected, select }) => {
+const TeamGame = ({ lines }) => {
   if (!(lines && lines.length)) {
     return null
   }
+  const parsedLines = lines.map(framesTransform)
   return (
     <div className={styles.teamGame}>
       <Header />
-      {lines.map((line, index) => (
-        <Line
-          key={index}
-          frames={line}
-          select={(frame, ball) => select(index, frame, ball)}
-          selected={selected.line === index ? selected : undefined}
-        />
+      {parsedLines.map((frames, lineIndex) => (
+        <Line key={lineIndex} lineIndex={lineIndex} frames={frames} />
       ))}
-      <Footer />
+      <Footer lines={parsedLines} />
     </div>
   )
 }
